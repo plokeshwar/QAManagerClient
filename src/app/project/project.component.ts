@@ -1,6 +1,7 @@
 import {ProjectService} from '../shared/project/project.service';
 import {SuiteService} from '../shared/suite/suite.service';
 import {TestcaseService} from '../shared/testcase/testcase.service'
+import {TeststepService} from '../shared/teststep/teststep.service'
 import { SuiteComponent } from '../suite/suite.component';
 import { TestComponent } from '../test/test.component'
 import {Component, OnInit, OnDestroy} from '@angular/core';
@@ -10,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {MatSnackBar} from '@angular/material';
+import { StepComponent } from '../step/step.component';
 
 
 @Component({
@@ -23,11 +25,11 @@ export class ProjectComponent implements OnInit, OnDestroy {
   suites: Array<any>;
   tests : Array<any>;
   test: any ={};
-
+  steps : Array<any>;
   sub: Subscription;
 
   constructor(private route: ActivatedRoute, private dialog: MatDialog,
-    private router: Router,
+    private router: Router, private stepService : TeststepService,
     private testCaseService: TestcaseService, private projectService: ProjectService, private suiteService: SuiteService, public snackBar: MatSnackBar) {
   }
 
@@ -76,6 +78,13 @@ export class ProjectComponent implements OnInit, OnDestroy {
     this.testCaseService.getAllTestsPerSuite(suiteId).subscribe(data =>{this.tests=data;})
   }
 
+  getStepsForTest(test){
+    console.log("Getting steps for test "+test)
+
+   this.stepService.getAllStepsPerTest(test).subscribe(data =>{
+    this.steps = data;
+   });
+  }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
@@ -123,6 +132,12 @@ export class ProjectComponent implements OnInit, OnDestroy {
     width: '70%', data: {suite:suite}});
     }
    
+    openAddStepDialog(test:any){
+      console.log("In Add Step Dialog with data "+test)
+      this.dialog.open(StepComponent, {height: '70%',
+      width: '70%', data: {test:test}});
+      }
+    
   openSnackBar(message: string, action: string, className: string) {
     this.snackBar.open(message, action, {
       duration: 9000,

@@ -1,0 +1,41 @@
+<mat-card>
+  <form #stepForm="ngForm" (ngSubmit)="update(suite.id, test.id, stepForm.value)">
+    <mat-card-header>
+      <mat-card-title>
+        <h2>{{step.id ? 'Edit' : 'Add'}} Step</h2>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <ul>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Step Description" required name="step" [(ngModel)]="step.step">
+        </mat-form-field>
+      </ul>
+      <ul>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Expected Result" required name="expected_result" [(ngModel)]="step.expected_result">
+        </mat-form-field>
+      </ul>
+  <!--
+      <ul>
+        <mat-form-field>
+          <mat-select placeholder="Select Status" name="status" [(ngModel)]="test.status">
+            <mat-option value="Failed">Failed</mat-option>
+            <mat-option value="Not Executed">Not Executed</mat-option>
+            <mat-option value="In Progress">In Progress</mat-option>
+            <mat-option value="Passed">Passed</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ul>
+    -->
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="save(test.id, step.id)" *ngIf="step.id == null" mat-dialog-close
+        [disabled]="!stepForm.form.valid">Save</button>
+      <button mat-raised-button color="primary" *ngIf="step.id" [mat-dialog-close]="step.id" (click)="save(test.id, step.id)">Update</button>
+      <button mat-raised-button color="warn" (click)="remove(test.id, step.id)" *ngIf="step.id" type="button">Delete</button>
+      <button mat-raised-button color="secondary" [mat-dialog-close]="step.id">Cancel</button>
+    </mat-card-actions>
+  </form>
+</mat-card>

@@ -35,7 +35,7 @@
            
             <mat-accordion>
               <mat-expansion-panel *ngFor="let item of tests" (opened)="item.panelOpenState = true" (closed)="item.panelOpenState = false">
-                <mat-expansion-panel-header>
+                <mat-expansion-panel-header (click)="getStepsForTest(item.id)">
                   <mat-panel-title>
                     {{item.id}}
                   </mat-panel-title>
@@ -49,12 +49,39 @@
                 <button class="test-edit-button" (click)="openUpdateTestDialog(suite, item)" matTooltip="Edit Test.">
                     <mat-icon>edit</mat-icon>
                 </button>
-                <ul><button class="test-edit-button" matTooltip="Add Step.">
-                    <mat-icon>add</mat-icon>
-                </button></ul>
+                
                 <ul>Precondition: {{item.precondition}}</ul>
                 <ul [class.test-progress]="item.status == 'In Progress'" [class.test-passed]="item.status == 'Passed'" [class.test-fail]="item.status == 'Failed'">Status : {{item.status}}</ul>
                 <ul>Estimate : {{item.estimate}}</ul>
+                  <table>
+                    <thead>
+                      <th style="width: 10%;">No.</th>
+                      <th style="width: 45%;">Step</th>
+                      <th style="width: 45%;">Expected</th>
+                      <th hidden=true>
+                        
+                      </th>
+                    </thead>
+                    <tr *ngIf="steps == ''">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><button class="test-edit-button" matTooltip="Add Step." (click)="openAddStepDialog(item)">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr *ngFor="let step of steps ; let last = last">
+                      <td align="center">{{step.position}}</td>
+                      <td>{{step.step}}</td>
+                      <td>{{step.expected_result}}</td>
+                      <td *ngIf="last"><button class="test-edit-button" matTooltip="Add Step." (click)="openAddStepDialog(item)">
+                          <mat-icon>add</mat-icon>
+                      </button>
+                    </td>
+                    </tr>
+                  </table>
+
               </mat-expansion-panel>
 
             </mat-accordion>
@@ -63,8 +90,8 @@
       </div>
       <div>
         <p>
-      <button mat-raised-button color="primary" (click)="openAddSuiteDialog()">
-          <mat-icon matTooltip="Click to add new suite.">add</mat-icon>  
+      <button matTooltip="Click to add new suite."mat-raised-button color="primary" (click)="openAddSuiteDialog()">
+          <mat-icon>add</mat-icon>  
       </button>
     </p>
     </div>

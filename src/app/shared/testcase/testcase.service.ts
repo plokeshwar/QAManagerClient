@@ -44,7 +44,6 @@ export class TestcaseService {
         suiteId	:test.suiteId,
         summary:test.summary
     }
-    return test;
   }
 
   remove(suiteId: string, id: string) {

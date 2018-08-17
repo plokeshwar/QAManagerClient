@@ -47,6 +47,7 @@ import {ProjectEditComponent} from './project-edit/project-edit.component';
 import {ProjectComponent} from './project/project.component';
 import { SuiteComponent } from './suite/suite.component';
 import { TestComponent } from './test/test.component';
+import { StepComponent } from './step/step.component';
 
 
 
@@ -61,7 +62,8 @@ import { TestComponent } from './test/test.component';
     customPipes,
     ProjectComponent,
     SuiteComponent,
-    TestComponent
+    TestComponent,
+    StepComponent
   ],
   imports: [
     BrowserAnimationsModule,

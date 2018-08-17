@@ -5,10 +5,11 @@ import { SuiteComponent } from './suite/suite.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { TestComponent } from './test/test.component';
+import { StepComponent } from './step/step.component';
 
 export const routingComponents = [DashboardComponent, ProjectEditComponent];
 
-export const entryComponents = [SuiteComponent, TestComponent];
+export const entryComponents = [SuiteComponent, TestComponent, StepComponent];
 
 export const routingProviders = [];
 
