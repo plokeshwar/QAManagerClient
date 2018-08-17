@@ -1,0 +1,26 @@
+<mat-card>
+<form #projectForm="ngForm" (ngSubmit)="update(project.id, projectForm.value)">
+	<mat-card-header>
+		<mat-card-title>
+			<h2>{{project.name ? 'Edit' : 'Add'}} Project</h2>
+		</mat-card-title>
+	</mat-card-header>
+	<mat-card-content>
+	
+			<mat-form-field class="example-full-width">
+			<input matInput placeholder="Project Name" [(ngModel)]="project.name" required name="name" #name>
+		</mat-form-field>
+		<br>
+		<mat-form-field class="example-full-width">
+			<input matInput placeholder="Description" [(ngModel)]="project.description" name="description" #description>
+		</mat-form-field>
+
+	</mat-card-content>
+	<mat-card-actions>
+		<button mat-raised-button color="primary" type="submit" *ngIf="project.id == null" [disabled]="!projectForm.form.valid">Save</button>
+		<button mat-raised-button color="primary" type="submit" *ngIf="project.id">Update</button>
+		<button mat-raised-button color="warn"(click)="remove(project.id)" *ngIf="project.id" type="button">Delete</button>
+		<button mat-raised-button color="secondary" routerLink="/dashboard">Cancel</button>
+	</mat-card-actions>
+</form>
+</mat-card>

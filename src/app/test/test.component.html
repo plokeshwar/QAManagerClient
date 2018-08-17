@@ -1,0 +1,54 @@
+<mat-card>
+  <form #testForm="ngForm" (ngSubmit)="update(suite.id, test.id, testForm.value)">
+    <mat-card-header>
+      <mat-card-title>
+        <h2>{{test.id ? 'Edit' : 'Add'}} Test</h2>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <ul>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Summary" required name="summary" [(ngModel)]="test.summary">
+        </mat-form-field>
+      </ul>
+      <ul>
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Precondition" name="precondition" [(ngModel)]="test.precondition"></textarea>
+        </mat-form-field>
+      </ul>
+      <ul>
+        <mat-form-field>
+          <p>
+            <input matInput type="number" placeholder="Estimate" name="estimate" [(ngModel)]="test.estimatedValue">
+          </p>
+        </mat-form-field>
+        <mat-form-field>
+          <p>
+            <mat-select placeholder="Estimate Type" name="estimateType" [(ngModel)]="test.estimatedType">
+              <mat-option value="hr">HR</mat-option>
+              <mat-option value="mn">MN</mat-option>
+              <mat-option value="dy">DY</mat-option>
+            </mat-select>
+          </p>
+        </mat-form-field>
+      </ul>
+      <ul>
+        <mat-form-field>
+          <mat-select placeholder="Select Status" name="status" [(ngModel)]="test.status">
+            <mat-option value="Failed">Failed</mat-option>
+            <mat-option value="Not Executed">Not Executed</mat-option>
+            <mat-option value="In Progress">In Progress</mat-option>
+            <mat-option value="Passed">Passed</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ul>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="save(suite.id, test.id)" *ngIf="test.id == null" mat-dialog-close
+        [disabled]="!testForm.form.valid">Save</button>
+      <button mat-raised-button color="primary" *ngIf="test.id" [mat-dialog-close]="test.id" (click)="save(suite.id, test.id)">Update</button>
+      <button mat-raised-button color="warn" (click)="remove(suite.id, test.id)" *ngIf="test.id" type="button">Delete</button>
+      <button mat-raised-button color="secondary" [mat-dialog-close]="test.id">Cancel</button>
+    </mat-card-actions>
+  </form>
+</mat-card>

@@ -1,0 +1,9 @@
+.button-row button,
+.button-row {
+  float: right;
+}
+
+.editButton{ visibility: hidden}
+md-cell:hover .editButton{
+visibility: visible;
+}

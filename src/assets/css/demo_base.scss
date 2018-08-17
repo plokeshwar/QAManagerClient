@@ -1,0 +1,98 @@
+@import '~@angular/material/theming';
+@include mat-core();
+//Setting brand colors
+$brand-color: ( 50: #ffffff, 100: #dde6f3, 200: #b4c9e4, 300: #7fa3d1, 400: #6992c9, 500: #2196F3, 600: #4072b4, 700: #38649d, 800: #305687, 900: #284770, A100: #ffffff, A200: #dde6f3, A400: #6992c9, A700: #38649d, contrast: ( 50: $black-87-opacity, 100: $black-87-opacity, 200: $black-87-opacity, 300: $black-87-opacity, 400: $black-87-opacity, 500: white, 600: white, 700: white, 800: white, 900: white, A100: $black-87-opacity, A200: $black-87-opacity, A400: $black-87-opacity, A700: white, ));
+//Dark Theme decalarations
+$dark-theme-primary: mat-palette($brand-color, 500);
+$dark-theme-accent: mat-palette($mat-red, 800, 400);
+$dark-theme-warn: mat-palette($mat-red);
+$demo-dark: mat-dark-theme($dark-theme-primary, $dark-theme-accent, $dark-theme-warn);
+//Light Theme decalarations
+$light-theme-primary: mat-palette($brand-color, 500);
+$light-theme-accent: mat-palette($mat-light-green, 300);
+$light-theme-warn: mat-palette($mat-red);
+$demo-light: mat-light-theme($light-theme-primary, $light-theme-accent, $light-theme-warn);
+//Theme main classes
+.demo-default {
+  @include angular-material-theme($demo-light);
+}
+
+.demo-dark {
+  @include angular-material-theme($demo-dark);
+}
+
+//colors
+$bodycolor: #fff;
+$default-color: #777777;
+$orange: #ff5722;
+$orange-secondary: #e43700;
+$white: #FFFFFF;
+$black: #000000;
+$primary: #2196F3;
+$lightgray: #F6F5F3;
+$darkgray: #1f1f1f;
+$gray: #E8E7E4;
+$darkred: #8B0000;
+$gold: #FFD700;
+$indigo: #4B0082;
+$green: #008000;
+$lightseagreen: #20B2AA;
+$aqua: #00FFFF;
+//font families
+$font-family-Roboto: 'Roboto',
+sans-serif;
+// font sizes
+$font-size-xxs-small: 8px;
+$font-size-xs-small: 10px;
+$font-size-small: 12px;
+$font-size-xs-regular :14px;
+$font-size-regular :16px;
+$font-size-large: 24px;
+$font-size-x-large:32px;
+$font-size-xx-large:48px;
+// font weight
+$font-weight-light:300;
+$font-weight-regular:400;
+$font-weight-bold:600;
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.home-button{
+  position: absolute !important;
+    right: 11px!important;
+    border-radius: 0!important;
+    padding: 0 20px!important;
+    width: 90px!important;
+}
+
+.test-edit-button{
+  float: right !important;
+}
+
+.test-passed{
+    background: green !important;
+    width: 110px !important;
+}
+
+.test-progress{
+  background: orange !important;
+  width: 110px !important;
+}
+
+.test-fail{
+  background: red !important;
+  width: 110px !important;
+}
+
+.test-pending{
+  background: grey !important;
+  width: 110px !important;
+}
