@@ -42,9 +42,11 @@
                   <mat-panel-description>
                     Summary : {{item.summary}}
                   </mat-panel-description>
+                  <span class="test-status">
                   <button mat-flat-button [class.test-progress]="item.status == 'In Progress'" [class.test-passed]="item.status == 'Passed'" [class.test-fail]="item.status == 'Failed'" [class.test-pending]="item.status == 'Not Executed'">
                       {{item.status}}  
                   </button>
+                  </span>
                 </mat-expansion-panel-header>
                 <button class="test-edit-button" (click)="openUpdateTestDialog(suite, item)" matTooltip="Edit Test.">
                     <mat-icon>edit</mat-icon>
@@ -89,7 +91,7 @@
         </mat-accordion>
       </div>
       <div>
-        <p>
+        <p class="suite-add-div">
       <button matTooltip="Click to add new suite."mat-raised-button color="primary" (click)="openAddSuiteDialog()">
           <mat-icon>add</mat-icon>  
       </button>
